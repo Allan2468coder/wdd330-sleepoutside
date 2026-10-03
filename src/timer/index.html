@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2f4ec" />
+    <title>Countdown Timer | Sleep Outside</title>
+    <link rel="stylesheet" href="/css/timer.css" />
+    <script src="/js/countdown.js" type="module"></script>
+  </head>
+  <body>
+    <main class="timer-app">
+      <a class="back-link" href="/index.html">SleepOutside</a>
+
+      <section class="timer" aria-labelledby="page-title">
+        <p class="eyebrow">W02 learning activity</p>
+        <h1 id="page-title">A little time, well spent.</h1>
+
+        <div
+          class="time-display"
+          id="countdown"
+          role="timer"
+          aria-label="0 minutes and 10 seconds remaining"
+        >
+          00:10
+        </div>
+
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Countdown progress"
+          aria-valuemin="0"
+          aria-valuemax="10"
+          aria-valuenow="10"
+        >
+          <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <p class="status" id="status" aria-live="polite">Ready when you are</p>
+
+        <div class="duration-control">
+          <label for="duration">Start time</label>
+          <div class="duration-input">
+            <input
+              id="duration"
+              name="duration"
+              type="number"
+              min="1"
+              max="3600"
+              step="1"
+              value="10"
+              required
+              aria-describedby="duration-hint"
+            />
+            <span>seconds</span>
+          </div>
+          <p id="duration-hint">Choose from 1 to 3,600 seconds.</p>
+        </div>
+
+        <div class="timer-controls">
+          <button class="button button--start" id="startButton" type="button">
+            Start
+          </button>
+          <button
+            class="button button--pause"
+            id="pauseButton"
+            type="button"
+            disabled
+          >
+            Pause
+          </button>
+          <button class="button button--reset" id="resetButton" type="button">
+            Reset
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
