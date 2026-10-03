@@ -31,11 +31,18 @@ export default class ProductDetails {
   renderProductDetails() {
     const product = this.product;
     const productDetail = document.querySelector(".product-detail");
+    const largeImage = product.Image.replace(
+      "../images/tents/",
+      "https://i.stpost.com/",
+    ).replace("~320.jpg", "~600.jpg");
 
     productDetail.innerHTML = `
       <h3>${product.Brand.Name}</h3>
       <h2 class="divider">${product.NameWithoutBrand}</h2>
-      <img class="divider" src="${product.Image}" alt="${product.Name}" />
+      <picture>
+        <source media="(min-width: 600px)" srcset="${largeImage}" />
+        <img class="divider" src="${product.Image}" alt="${product.Name}" />
+      </picture>
       <p class="product-card__price">$${product.FinalPrice}</p>
       <p class="product__color">${product.Colors[0].ColorName}</p>
       <p class="product__description">${product.DescriptionHtmlSimple}</p>
