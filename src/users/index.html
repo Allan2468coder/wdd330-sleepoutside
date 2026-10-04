@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2f4ec" />
+    <meta
+      name="description"
+      content="W04 learning activity: fetch and display users from JSONPlaceholder."
+    />
+    <title>W04 Fetch API Learning Activity</title>
+    <link rel="stylesheet" href="/css/users.css" />
+    <script src="/js/users.js" type="module"></script>
+  </head>
+  <body>
+    <main class="activity">
+      <p class="eyebrow">W04 learning activity</p>
+      <h1>JSONPlaceholder users</h1>
+      <p class="intro">A list of users retrieved from the JSONPlaceholder API.</p>
+
+      <p id="status" class="status" role="status" aria-live="polite">
+        Loading users…
+      </p>
+      <ul id="user-list" class="user-list" aria-label="Users"></ul>
+      <button id="retry-button" type="button" hidden>Try again</button>
+    </main>
+  </body>
+</html>
