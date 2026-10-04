@@ -1,13 +1,9 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
-const productIdsWithDetailPages = {
-  tents: new Set(["880RR", "985RF", "985PR", "344YJ"]),
-};
-
-function productCardTemplate(product) {
+function productCardTemplate(product, category) {
   return `<li class="product-card">
-    <a href="product_pages/?product=${product.Id}">
-      <img src="${product.Image}" alt="${product.Name}" />
+    <a href="/product_pages/?product=${encodeURIComponent(product.Id)}&category=${encodeURIComponent(category)}">
+      <img src="${product.Images?.PrimaryMedium ?? product.Image}" alt="${product.Name}" />
       <h3 class="card__brand">${product.Brand.Name}</h3>
       <h2 class="card__name">${product.NameWithoutBrand}</h2>
       <p class="product-card__price">$${product.FinalPrice}</p>
@@ -23,18 +19,15 @@ export default class ProductList {
   }
 
   async init() {
-    const products = await this.dataSource.getData();
-    const productIds = productIdsWithDetailPages[this.category];
-    const list = productIds
-      ? products.filter((product) => productIds.has(product.Id))
-      : products;
+    const list = await this.dataSource.getData(this.category);
 
     this.renderList(list);
+    return list;
   }
 
   renderList(list) {
     renderListWithTemplate(
-      productCardTemplate,
+      (product) => productCardTemplate(product, this.category),
       this.listElement,
       list,
       "afterbegin",

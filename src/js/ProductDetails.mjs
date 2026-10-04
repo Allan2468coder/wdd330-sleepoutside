@@ -1,18 +1,28 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 export default class ProductDetails {
-  constructor(productId, dataSource) {
+  constructor(productId, category, dataSource) {
     this.productId = productId;
+    this.category = category;
     this.product = {};
     this.dataSource = dataSource;
   }
 
   async init() {
-    this.product = await this.dataSource.findProductById(this.productId);
+    const productDetail = document.querySelector(".product-detail");
+
+    try {
+      this.product = await this.dataSource.findProductById(
+        this.productId,
+        this.category,
+      );
+    } catch (error) {
+      productDetail.textContent = `Unable to load product details: ${error.message}`;
+      return;
+    }
 
     if (!this.product) {
-      document.querySelector(".product-detail").textContent =
-        "Product not found.";
+      productDetail.textContent = "Product not found.";
       return;
     }
 
@@ -31,20 +41,16 @@ export default class ProductDetails {
   renderProductDetails() {
     const product = this.product;
     const productDetail = document.querySelector(".product-detail");
-    const largeImage = product.Image.replace(
-      "../images/tents/",
-      "https://i.stpost.com/",
-    ).replace("~320.jpg", "~600.jpg");
+    const productImage = product.Images?.PrimaryLarge ?? product.Image ?? "";
 
     productDetail.innerHTML = `
       <h3>${product.Brand.Name}</h3>
       <h2 class="divider">${product.NameWithoutBrand}</h2>
       <picture>
-        <source media="(min-width: 600px)" srcset="${largeImage}" />
-        <img class="divider" src="${product.Image}" alt="${product.Name}" />
+        <img class="divider" src="${productImage}" alt="${product.Name}" />
       </picture>
       <p class="product-card__price">$${product.FinalPrice}</p>
-      <p class="product__color">${product.Colors[0].ColorName}</p>
+      <p class="product__color">${product.Colors?.[0]?.ColorName ?? ""}</p>
       <p class="product__description">${product.DescriptionHtmlSimple}</p>
       <div class="product-detail__add">
         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
