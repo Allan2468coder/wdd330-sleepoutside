@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2f4ec" />
+    <meta
+      name="description"
+      content="Practice HTML form validation with a future value calculator."
+    />
+    <title>W03 Form Validation Learning Activity</title>
+    <link rel="stylesheet" href="/css/forms.css" />
+    <script src="/js/forms.js" type="module"></script>
+  </head>
+  <body>
+    <main class="activity">
+      <p class="eyebrow">W03 learning activity</p>
+      <h1>Form validation</h1>
+      <p class="intro">
+        Enter the investment details to estimate its future value. The annual
+        rate is a decimal, so enter <code>0.08</code> for 8%.
+      </p>
+
+      <form id="future-value-form" novalidate>
+        <div class="field">
+          <label for="principal">Principal amount ($)</label>
+          <input
+            id="principal"
+            name="principal"
+            type="number"
+            min="0.01"
+            step="any"
+            inputmode="decimal"
+            required
+            aria-describedby="principal-hint"
+          />
+          <small id="principal-hint">Enter an amount greater than zero.</small>
+        </div>
+
+        <div class="field">
+          <label for="principal-confirm">Verify principal amount ($)</label>
+          <input
+            id="principal-confirm"
+            name="principal-confirm"
+            type="number"
+            min="0.01"
+            step="any"
+            inputmode="decimal"
+            required
+            aria-describedby="principal-confirm-hint principal-feedback"
+          />
+          <small id="principal-confirm-hint">
+            Re-enter the same principal amount.
+          </small>
+          <small
+            id="principal-feedback"
+            class="feedback"
+            aria-live="polite"
+          ></small>
+        </div>
+
+        <div class="field">
+          <label for="annual-rate">Annual rate (decimal)</label>
+          <input
+            id="annual-rate"
+            name="annual-rate"
+            type="number"
+            min="0"
+            step="any"
+            inputmode="decimal"
+            placeholder="0.08"
+            required
+            aria-describedby="annual-rate-hint"
+          />
+          <small id="annual-rate-hint">
+            For example, enter 0.08 for an 8% annual rate.
+          </small>
+        </div>
+
+        <div class="field">
+          <label for="years">Years</label>
+          <input
+            id="years"
+            name="years"
+            type="number"
+            min="1"
+            step="1"
+            inputmode="numeric"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="periods">Compounding periods per year</label>
+          <input
+            id="periods"
+            name="periods"
+            type="number"
+            min="1"
+            step="1"
+            inputmode="numeric"
+            required
+          />
+        </div>
+
+        <button type="submit">Compute future value</button>
+      </form>
+
+      <p id="result" class="result" role="status" aria-live="polite"></p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+:root {
+  color-scheme: light;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: #18372f;
+  background: #f2f4ec;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --ink: #18372f;
+  --muted: #68766e;
+  --paper: #fffef8;
+  --accent: #d65e45;
+  --line: #d6ded2;
+  --success: #26734c;
+  --error: #b33b32;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 2rem 1rem;
+  background-image: linear-gradient(#18372f0a 1px, transparent 1px),
+    linear-gradient(90deg, #18372f0a 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.activity {
+  width: min(100%, 620px);
+  margin: 2rem auto;
+  padding: clamp(1.25rem, 5vw, 2.5rem);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: 0 12px 36px #18372f12;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  font-weight: 500;
+}
+
+.intro {
+  margin: 0.85rem 0 1.75rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+code {
+  padding: 0.1rem 0.3rem;
+  background: #edf1e9;
+  color: var(--ink);
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+label {
+  font-weight: 700;
+}
+
+input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #9eaca0;
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+input.touched:valid,
+.was-validated input:valid {
+  border-color: var(--success);
+  box-shadow: inset 3px 0 var(--success);
+}
+
+input.touched:invalid,
+.was-validated input:invalid {
+  border-color: var(--error);
+  box-shadow: inset 3px 0 var(--error);
+}
+
+small {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.feedback {
+  color: var(--error);
+}
+
+button {
+  min-height: 48px;
+  margin-top: 0.4rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 2px;
+  background: var(--ink);
+  color: var(--paper);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #285348;
+}
+
+.result {
+  min-height: 1.5rem;
+  margin: 1.25rem 0 0;
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.5;
+}
