@@ -1,13 +1,9 @@
-const baseURL = import.meta.env.VITE_SERVER_URL;
+const baseURL =
+  import.meta.env.VITE_SERVER_URL?.trim() ||
+  "https://wdd330-backend-osp8.onrender.com/";
 const categories = new Set(["tents", "backpacks", "sleeping-bags", "hammocks"]);
 
 function apiUrl(path) {
-  if (!baseURL) {
-    throw new Error(
-      "VITE_SERVER_URL is not configured. Add it to the project's .env file.",
-    );
-  }
-
   return `${baseURL.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
 }
 
