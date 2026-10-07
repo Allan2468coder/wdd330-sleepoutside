@@ -1,5 +1,75 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
+const glossaryTerms = {
+  Closeout: {
+    href: "/closeout~g~3281",
+    title:
+      "Closeout: Closeout indicates an item may be last year's model or color. Closeouts are often offered at a discount.",
+  },
+  Featherlite: {
+    href: "/featherlite~g~1835",
+    title:
+      "Featherlite: An unusually strong, lightweight aluminum tent pole system.",
+  },
+};
+
+function addGlossaryLinks(description) {
+  const fragment = document.createElement("template");
+  fragment.innerHTML = description ?? "";
+
+  const walker = document.createTreeWalker(
+    fragment.content,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode(node) {
+        return node.parentElement?.closest("a")
+          ? NodeFilter.FILTER_REJECT
+          : NodeFilter.FILTER_ACCEPT;
+      },
+    },
+  );
+  const textNodes = [];
+
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+
+  const termsPattern = /\b(Closeouts?|Featherlite)\b/gi;
+
+  for (const textNode of textNodes) {
+    const text = textNode.textContent;
+    const matches = [...text.matchAll(termsPattern)];
+
+    if (!matches.length) continue;
+
+    const replacement = document.createDocumentFragment();
+    let cursor = 0;
+
+    for (const match of matches) {
+      const start = match.index;
+      const end = start + match[0].length;
+      const term = match[0].toLowerCase().startsWith("closeout")
+        ? "Closeout"
+        : "Featherlite";
+      const glossary = glossaryTerms[term];
+      const link = document.createElement("a");
+
+      replacement.append(text.slice(cursor, start));
+      link.className = "glossaryTermLink";
+      link.href = glossary.href;
+      link.title = glossary.title;
+      link.textContent = match[0];
+      replacement.append(link);
+      cursor = end;
+    }
+
+    replacement.append(text.slice(cursor));
+    textNode.replaceWith(replacement);
+  }
+
+  return fragment.innerHTML;
+}
+
 export default class ProductDetails {
   constructor(productId, category, dataSource) {
     this.productId = productId;
@@ -51,7 +121,7 @@ export default class ProductDetails {
       </picture>
       <p class="product-card__price">$${product.FinalPrice}</p>
       <p class="product__color">${product.Colors?.[0]?.ColorName ?? ""}</p>
-      <p class="product__description">${product.DescriptionHtmlSimple}</p>
+      <p class="product__description">${addGlossaryLinks(product.DescriptionHtmlSimple)}</p>
       <div class="product-detail__add">
         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
       </div>
