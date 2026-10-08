@@ -248,6 +248,31 @@ button {
   width: 100%;
 }
 
+.glossary-dialog {
+  width: min(32rem, calc(100vw - 2rem));
+  max-height: min(80vh, 36rem);
+  margin: auto;
+  padding: 1.5rem;
+  border: 2px solid var(--primary-color);
+  color: var(--dark-grey);
+}
+
+.glossary-dialog::backdrop {
+  background: rgb(0 0 0 / 55%);
+}
+
+.glossary-dialog h2 {
+  margin-bottom: 0.75rem;
+}
+
+.glossary-dialog p {
+  padding: 0;
+}
+
+.glossary-dialog__close {
+  margin-top: 1rem;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;

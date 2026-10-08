@@ -2,12 +2,12 @@ import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 const glossaryTerms = {
   Closeout: {
-    href: "/closeout~g~3281",
+    href: "#glossary-dialog",
     title:
       "Closeout: Closeout indicates an item may be last year's model or color. Closeouts are often offered at a discount.",
   },
   Featherlite: {
-    href: "/featherlite~g~1835",
+    href: "#glossary-dialog",
     title:
       "Featherlite: An unusually strong, lightweight aluminum tent pole system.",
   },
@@ -58,6 +58,7 @@ function addGlossaryLinks(description) {
       link.className = "glossaryTermLink";
       link.href = glossary.href;
       link.title = glossary.title;
+      link.setAttribute("aria-haspopup", "dialog");
       link.textContent = match[0];
       replacement.append(link);
       cursor = end;
@@ -66,6 +67,11 @@ function addGlossaryLinks(description) {
     replacement.append(text.slice(cursor));
     textNode.replaceWith(replacement);
   }
+
+  fragment.content.querySelectorAll("a.glossaryTermLink").forEach((link) => {
+    link.href = "#glossary-dialog";
+    link.setAttribute("aria-haspopup", "dialog");
+  });
 
   return fragment.innerHTML;
 }
@@ -130,9 +136,34 @@ export default class ProductDetails {
       <p class="product-card__price">$${product.FinalPrice}</p>
       <p class="product__color">${product.Colors?.[0]?.ColorName ?? ""}</p>
       <p class="product__description">${addGlossaryLinks(product.DescriptionHtmlSimple)}</p>
+      <dialog class="glossary-dialog" id="glossary-dialog" aria-labelledby="glossary-dialog-title">
+        <h2 id="glossary-dialog-title"></h2>
+        <p id="glossary-dialog-definition"></p>
+        <button class="glossary-dialog__close" type="button">Close</button>
+      </dialog>
       <div class="product-detail__add">
         <button id="addToCart" data-id="${product.Id}">Add to Cart</button>
       </div>
     `;
+
+    const glossaryDialog = productDetail.querySelector("#glossary-dialog");
+    const closeButton = glossaryDialog.querySelector(".glossary-dialog__close");
+    closeButton.autofocus = true;
+    closeButton.addEventListener("click", () => glossaryDialog.close());
+    glossaryDialog.addEventListener("click", (event) => {
+      if (event.target === glossaryDialog) glossaryDialog.close();
+    });
+    productDetail.addEventListener("click", (event) => {
+      const glossaryLink = event.target.closest("a.glossaryTermLink");
+      if (!glossaryLink) return;
+
+      event.preventDefault();
+      const definition = glossaryLink.title || `${glossaryLink.textContent} is used in this product description.`;
+      const separator = definition.indexOf(":");
+      document.querySelector("#glossary-dialog-title").textContent = glossaryLink.textContent;
+      document.querySelector("#glossary-dialog-definition").textContent =
+        separator >= 0 ? definition.slice(separator + 1).replace(/^\s*[-:]\s*/, "") : definition;
+      glossaryDialog.showModal();
+    });
   }
 }
