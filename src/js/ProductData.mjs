@@ -20,6 +20,20 @@ async function fetchJson(path) {
 }
 
 export default class ProductData {
+  async checkout(payload) {
+    const response = await fetch(apiUrl("checkout"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Checkout failed (${response.status} ${response.statusText}).`);
+    }
+
+    return response.json();
+  }
+
   async getData(category) {
     if (!categories.has(category)) {
       throw new Error(`Unknown product category: ${category}`);

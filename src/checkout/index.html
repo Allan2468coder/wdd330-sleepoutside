@@ -1,26 +1,47 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Sleep Outside | Checkout</title>
-
     <link rel="stylesheet" href="/css/style.css" />
     <script src="/js/checkout.js" type="module"></script>
   </head>
-
   <body>
     <header class="divider" id="main-header"></header>
-
-    <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
-      </section>
+    <main class="divider checkout-page">
+      <h1>Checkout</h1>
+      <div class="checkout-layout">
+        <form id="checkout-form" name="checkout" class="checkout-form">
+          <fieldset>
+            <legend>Shipping details</legend>
+            <label>First name <input name="fname" autocomplete="given-name" required /></label>
+            <label>Last name <input name="lname" autocomplete="family-name" required /></label>
+            <label>Street address <input name="street" autocomplete="street-address" required /></label>
+            <label>City <input name="city" autocomplete="address-level2" required /></label>
+            <label>State <input name="state" autocomplete="address-level1" required /></label>
+            <label>ZIP code <input name="zip" autocomplete="postal-code" inputmode="numeric" required /></label>
+          </fieldset>
+          <fieldset>
+            <legend>Payment</legend>
+            <label>Credit card number <input name="cardNumber" autocomplete="cc-number" inputmode="numeric" required /></label>
+            <label>Expiration date <input name="expiration" autocomplete="cc-exp" placeholder="MM/YY" required /></label>
+            <label>Security code <input name="code" autocomplete="cc-csc" inputmode="numeric" required /></label>
+          </fieldset>
+          <button type="submit">Place order</button>
+          <p id="checkout-message" role="status" aria-live="polite"></p>
+        </form>
+        <aside class="order-summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Order summary</h2>
+          <dl>
+            <dt>Subtotal</dt><dd id="subtotal">$0.00</dd>
+            <dt>Tax</dt><dd id="tax">Calculated after ZIP code</dd>
+            <dt>Shipping estimate</dt><dd id="shipping">Calculated after ZIP code</dd>
+            <dt class="summary-total">Order total</dt><dd id="order-total" class="summary-total">Calculated after ZIP code</dd>
+          </dl>
+        </aside>
+      </div>
     </main>
-
     <footer id="main-footer"></footer>
   </body>
 </html>

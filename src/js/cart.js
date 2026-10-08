@@ -5,6 +5,12 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   const list = document.querySelector(".product-list");
   list.innerHTML = htmlItems.join("");
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + Number(item.FinalPrice) * (Number(item.Quantity) || 1),
+    0,
+  );
+  document.querySelector("#cart-subtotal").textContent = `$${subtotal.toFixed(2)}`;
+  document.querySelector(".checkout-link").hidden = cartItems.length === 0;
   list.querySelectorAll(".cart-card__quantity").forEach((input) => {
     input.addEventListener("change", updateQuantity);
   });
@@ -43,6 +49,7 @@ function updateQuantity(event) {
   item.Quantity = quantity;
   event.target.value = quantity;
   setLocalStorage("so-cart", cartItems);
+  renderCartContents();
 }
 
 loadHeaderFooter();
