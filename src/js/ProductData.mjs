@@ -26,12 +26,16 @@ export default class ProductData {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
+    const jsonResponse = await response.json();
 
     if (!response.ok) {
-      throw new Error(`Checkout failed (${response.status} ${response.statusText}).`);
+      throw {
+        name: "servicesError",
+        message: jsonResponse,
+      };
     }
 
-    return response.json();
+    return jsonResponse;
   }
 
   async getData(category) {

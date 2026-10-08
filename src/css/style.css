@@ -345,6 +345,38 @@ button {
   cursor: wait;
 }
 
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.75rem 0;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #cf8540;
+  background: #f0a868;
+  color: var(--dark-grey);
+  font-size: var(--small-font);
+}
+
+.alert__close {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0 0.2rem;
+  background: transparent;
+  color: inherit;
+  font-size: 1.25rem;
+}
+
+.success-page {
+  min-height: 45vh;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.success-page p {
+  margin: 1rem auto;
+}
+
 .order-summary h2 {
   margin-bottom: 1rem;
 }

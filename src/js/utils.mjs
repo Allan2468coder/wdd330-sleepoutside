@@ -70,6 +70,49 @@ export function getLocalStorage(key) {
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
+export function alertMessage(message, scroll = true) {
+  const main = qs("main");
+  if (!main) return;
+
+  const alert = document.createElement("div");
+  alert.className = "alert";
+  alert.setAttribute("role", "alert");
+
+  const text = document.createElement("span");
+  if (typeof message === "string") {
+    text.textContent = message;
+  } else if (Array.isArray(message)) {
+    text.textContent = message.map(formatAlertDetail).join(" ");
+  } else {
+    text.textContent = formatAlertDetail(message);
+  }
+
+  const close = document.createElement("button");
+  close.type = "button";
+  close.className = "alert__close";
+  close.setAttribute("aria-label", "Dismiss message");
+  close.textContent = "×";
+  close.addEventListener("click", () => alert.remove());
+
+  alert.append(text, close);
+  main.prepend(alert);
+  if (scroll) window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function formatAlertDetail(detail) {
+  if (typeof detail === "string") return detail;
+  if (!detail || typeof detail !== "object") return String(detail ?? "");
+
+  return Object.entries(detail)
+    .map(([key, value]) => {
+      const readableKey = key.replace(/([A-Z])/g, " $1").replace(/^./, (letter) => letter.toUpperCase());
+      const readableValue = Array.isArray(value) ? value.join(", ") : String(value);
+      return `${readableKey}: ${readableValue}`;
+    })
+    .join(". ");
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {

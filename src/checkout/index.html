@@ -15,18 +15,18 @@
         <form id="checkout-form" name="checkout" class="checkout-form">
           <fieldset>
             <legend>Shipping details</legend>
-            <label>First name <input name="fname" autocomplete="given-name" required /></label>
-            <label>Last name <input name="lname" autocomplete="family-name" required /></label>
-            <label>Street address <input name="street" autocomplete="street-address" required /></label>
-            <label>City <input name="city" autocomplete="address-level2" required /></label>
-            <label>State <input name="state" autocomplete="address-level1" required /></label>
-            <label>ZIP code <input name="zip" autocomplete="postal-code" inputmode="numeric" required /></label>
+            <label>First name <input name="fname" autocomplete="given-name" minlength="2" maxlength="50" pattern="[A-Za-zÀ-ÿ' -]+" title="Use at least 2 letters." required /></label>
+            <label>Last name <input name="lname" autocomplete="family-name" minlength="2" maxlength="50" pattern="[A-Za-zÀ-ÿ' -]+" title="Use at least 2 letters." required /></label>
+            <label>Street address <input name="street" autocomplete="street-address" minlength="3" maxlength="100" required /></label>
+            <label>City <input name="city" autocomplete="address-level2" minlength="2" maxlength="60" required /></label>
+            <label>State <input name="state" autocomplete="address-level1" minlength="2" maxlength="30" required /></label>
+            <label>ZIP code <input name="zip" autocomplete="postal-code" inputmode="numeric" pattern="\d{5}(-\d{4})?" maxlength="10" title="Enter a 5-digit ZIP code, optionally followed by 4 digits." required /></label>
           </fieldset>
           <fieldset>
             <legend>Payment</legend>
-            <label>Credit card number <input name="cardNumber" autocomplete="cc-number" inputmode="numeric" required /></label>
-            <label>Expiration date <input name="expiration" autocomplete="cc-exp" placeholder="MM/YY" required /></label>
-            <label>Security code <input name="code" autocomplete="cc-csc" inputmode="numeric" required /></label>
+            <label>Credit card number <input name="cardNumber" autocomplete="cc-number" inputmode="numeric" pattern="\d{16}" maxlength="16" title="Enter the 16-digit card number without spaces." required /></label>
+            <label>Expiration date <input name="expiration" autocomplete="cc-exp" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])/(\d{2}|\d{4})" title="Use MM/YY or MM/YYYY, and choose a future date." required /></label>
+            <label>Security code <input name="code" autocomplete="cc-csc" inputmode="numeric" pattern="\d{3,4}" maxlength="4" title="Enter the 3- or 4-digit security code." required /></label>
           </fieldset>
           <button type="submit">Place order</button>
           <p id="checkout-message" role="status" aria-live="polite"></p>

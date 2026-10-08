@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { alertMessage, getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 const glossaryTerms = {
   Closeout: {
@@ -113,6 +113,7 @@ export default class ProductDetails {
     }
 
     setLocalStorage("so-cart", cartItems);
+    alertMessage(`${this.product.Name} was added to your cart.`, false);
   }
 
   renderProductDetails() {

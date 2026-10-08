@@ -1,4 +1,4 @@
-import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { alertMessage, getLocalStorage, loadHeaderFooter, setLocalStorage } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 
 const money = (amount) => `$${amount.toFixed(2)}`;
@@ -17,7 +17,25 @@ export default class CheckoutProcess {
     this.orderTotal = 0;
     this.renderSubtotal();
     this.form.elements.zip.addEventListener("input", () => this.calculateOrder());
+    this.form.elements.expiration.addEventListener("input", () => this.validateExpiration());
     this.form.addEventListener("submit", (event) => this.submit(event));
+  }
+
+  validateExpiration() {
+    const input = this.form.elements.expiration;
+    const match = input.value.match(/^(0[1-9]|1[0-2])\/(\d{2}|\d{4})$/);
+    if (!match) {
+      input.setCustomValidity("");
+      return;
+    }
+
+    const month = Number(match[1]);
+    let year = Number(match[2]);
+    if (match[2].length === 2) year += 2000;
+    const now = new Date();
+    const isCurrentOrFuture = year > now.getFullYear() ||
+      (year === now.getFullYear() && month >= now.getMonth() + 1);
+    input.setCustomValidity(isCurrentOrFuture ? "" : "Enter a card expiration date in the future.");
   }
 
   renderSubtotal() {
@@ -51,7 +69,10 @@ export default class CheckoutProcess {
 
   async submit(event) {
     event.preventDefault();
-    if (!this.form.reportValidity()) return;
+    this.validateExpiration();
+    const isValid = this.form.checkValidity();
+    this.form.reportValidity();
+    if (!isValid) return;
     this.calculateOrder();
     if (!this.form.elements.zip.value.trim()) return;
 
@@ -70,10 +91,12 @@ export default class CheckoutProcess {
     };
 
     try {
-      const response = await this.dataSource.checkout(payload);
-      message.textContent = response.message ?? "Order submitted successfully.";
+      await this.dataSource.checkout(payload);
+      setLocalStorage("so-cart", []);
+      window.location.assign("/checkout/success.html");
     } catch (error) {
-      message.textContent = `Unable to submit your order: ${error.message}`;
+      message.textContent = "Your order could not be submitted. Review the details and try again.";
+      alertMessage(error.message ?? "The checkout service could not process the order.");
       button.disabled = false;
     }
   }
