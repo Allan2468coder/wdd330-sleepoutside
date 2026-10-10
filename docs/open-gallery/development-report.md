@@ -32,4 +32,4 @@ The most important design decision was to normalize each museum's different fiel
 
 ## Completion evidence
 
-The project source is being added to the SleepOutside repository as a separate Vite entry at `/open-gallery/`. The local production build succeeds and emits `dist/open-gallery/index.html`. Verify the Render deployment before treating the hosted route as live. The Trello board is publicly readable, but this session has no authenticated write access; see the board progress note for exact status and remaining board action.
+The project source is committed to the SleepOutside repository as a separate Vite entry at `/open-gallery/`. The local production build succeeds and emits `dist/open-gallery/index.html`. The deployed Render route responds with HTTP 200 and serves the Open Gallery page. The Trello board remains publicly readable but was not edited in this session; see the board progress note for the current checklist status and the board updates still needed.
