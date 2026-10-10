@@ -18,6 +18,7 @@ export default defineConfig({
         users: resolve(__dirname, "src/users/index.html"),
         timer: resolve(__dirname, "src/timer/index.html"),
         product: resolve(__dirname, "src/product_pages/index.html"),
+        openGallery: resolve(__dirname, "src/open-gallery/index.html"),
       },
     },
   },
