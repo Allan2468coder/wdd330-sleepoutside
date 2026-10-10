@@ -1,4 +1,5 @@
 import { searchMuseum } from "./artworks.js";
+import { isFavorite, setFavoriteCount, toggleFavorite } from "./favorites.js";
 
 const form = document.querySelector("#search-form");
 const queryInput = document.querySelector("#query");
@@ -13,22 +14,34 @@ const sortInput = document.querySelector("#sort");
 const state = { query: "", museum: "both", page: 0, busy: false, controllers: [], entries: [], total: 0, nextPage: true };
 const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 450'%3E%3Crect width='600' height='450' fill='%23e8e2d5'/%3E%3Cpath d='M0 350Q150 230 300 350T600 320V450H0' fill='%23c9b9a0'/%3E%3Ccircle cx='420' cy='130' r='60' fill='%23d6a47a'/%3E%3C/svg%3E";
 
+function artworkCard(art) {
+  const favorite = isFavorite(art.id);
+  const [museum, ...parts] = art.id.split("-");
+  const detailUrl = `detail.html?museum=${encodeURIComponent(museum)}&id=${encodeURIComponent(parts.join("-"))}`;
+  const museumLabel = art.museum === "The Metropolitan Museum of Art" ? "The Met" : "Art Institute";
+  return `
+    <article class="art-card">
+      <div class="art-image-frame">
+        <a class="image-link" href="${escapeAttribute(detailUrl)}" aria-label="View details for ${escapeAttribute(art.title)}">
+          <img src="${escapeAttribute(art.image || fallbackImage)}" alt="${escapeAttribute(art.title)}" loading="lazy" />
+          <span class="museum-tag">${escapeHtml(museumLabel)}</span>
+        </a>
+        <button class="favorite-button" type="button" data-favorite-id="${escapeAttribute(art.id)}" aria-pressed="${favorite}" aria-label="${favorite ? "Remove" : "Save"} ${escapeAttribute(art.title)} ${favorite ? "from" : "to"} saved works">${favorite ? "♥" : "♡"}</button>
+      </div>
+      <div class="art-card-copy"><h3><a href="${escapeAttribute(detailUrl)}">${escapeHtml(art.title)}</a></h3><p class="artist">${escapeHtml(art.artist)}</p><p class="art-meta">${escapeHtml([art.date, art.department].filter(Boolean).join(" · "))}</p></div>
+    </article>`;
+}
+
 function render() {
   const sorted = [...state.entries];
   if (sortInput.value === "title") sorted.sort((a, b) => a.title.localeCompare(b.title));
   if (sortInput.value === "artist") sorted.sort((a, b) => a.artist.localeCompare(b.artist));
-  resultsElement.innerHTML = sorted.map((art) => `
-    <article class="art-card">
-      <a class="image-link" href="${escapeAttribute(art.record)}" target="_blank" rel="noreferrer" aria-label="View ${escapeAttribute(art.title)} at ${escapeAttribute(art.museum)}">
-        <img src="${escapeAttribute(art.image || fallbackImage)}" alt="${escapeAttribute(art.title)}" loading="lazy" />
-        <span class="museum-tag">${escapeHtml(art.museum === "The Metropolitan Museum of Art" ? "The Met" : "Art Institute")}</span>
-      </a>
-      <div class="art-card-copy"><h3><a href="${escapeAttribute(art.record)}" target="_blank" rel="noreferrer">${escapeHtml(art.title)}</a></h3><p class="artist">${escapeHtml(art.artist)}</p><p class="art-meta">${escapeHtml([art.date, art.department].filter(Boolean).join(" · "))}</p></div>
-    </article>`).join("");
+  resultsElement.innerHTML = sorted.map(artworkCard).join("");
   countElement.textContent = `${state.entries.length} works shown${state.total ? ` · ${state.total.toLocaleString()} records match` : ""}`;
   toolbar.hidden = state.entries.length === 0;
   moreButton.hidden = !state.nextPage || state.entries.length === 0;
   resultsElement.querySelectorAll("img").forEach((image) => image.addEventListener("error", () => { image.src = fallbackImage; }, { once: true }));
+  setFavoriteCount(document.querySelector("#favorite-count"));
 }
 
 function escapeHtml(value) {
@@ -90,9 +103,25 @@ form.addEventListener("submit", (event) => {
   document.querySelector("#search").scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
+resultsElement.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-favorite-id]");
+  if (!button) return;
+  const artwork = state.entries.find((item) => item.id === button.dataset.favoriteId);
+  if (!artwork) return;
+  const result = toggleFavorite(artwork);
+  if (result.error) {
+    statusElement.textContent = "Your browser could not save this artwork. Check your storage settings and try again.";
+    return;
+  }
+  render();
+});
+
 document.querySelectorAll("[data-query]").forEach((button) => button.addEventListener("click", () => {
   queryInput.value = button.dataset.query;
   form.requestSubmit();
 }));
 moreButton.addEventListener("click", () => loadPage());
 sortInput.addEventListener("change", render);
+window.addEventListener("storage", () => setFavoriteCount(document.querySelector("#favorite-count")));
+window.addEventListener("pageshow", () => setFavoriteCount(document.querySelector("#favorite-count")));
+setFavoriteCount(document.querySelector("#favorite-count"));

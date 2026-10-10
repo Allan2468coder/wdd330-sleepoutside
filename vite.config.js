@@ -19,6 +19,8 @@ export default defineConfig({
         timer: resolve(__dirname, "src/timer/index.html"),
         product: resolve(__dirname, "src/product_pages/index.html"),
         openGallery: resolve(__dirname, "src/open-gallery/index.html"),
+        openGalleryDetail: resolve(__dirname, "src/open-gallery/detail.html"),
+        openGalleryFavorites: resolve(__dirname, "src/open-gallery/favorites.html"),
       },
     },
   },

@@ -1,4 +1,4 @@
-# Open Gallery — Week 5 Development Report
+# Open Gallery — Week 5–6 Development Report
 
 ## Task report
 
@@ -26,10 +26,23 @@ This work develops the project skills in API integration, asynchronous JavaScrip
 - **Accessibility and responsive design:** Added semantic sections, a labeled search, a live status region, image alternatives, focus styles, reduced-motion support, and mobile layouts. Evidence: `src/open-gallery/index.html` and `src/open-gallery/styles.css`.
 - **Professional planning:** The board cards were reviewed against the Week 5 implementation and the work was organized by deliverable. The board progress record is in [`trello-progress.md`](./trello-progress.md).
 
+## Week 6 task report
+
+| Work item | Result | Evidence |
+| --- | --- | --- |
+| Artwork details | Added a detail route that retrieves the selected record from the correct museum API and displays the image, artist, date, medium, dimensions, collection, and available credit information. | [`detail.html`](../../src/open-gallery/detail.html), [`detail.js`](../../src/open-gallery/detail.js), [`artworks.js`](../../src/open-gallery/artworks.js) |
+| Museum source and image fallback | Detail pages link to the museum's public record and show a designed fallback if the image cannot load. | [`detail.js`](../../src/open-gallery/detail.js), [`styles.css`](../../src/open-gallery/styles.css) |
+| Favorites | Added save/remove controls on search cards and detail pages, with saved data persisted in local storage. | [`favorites.js`](../../src/open-gallery/favorites.js), [`main.js`](../../src/open-gallery/main.js), [`detail.js`](../../src/open-gallery/detail.js) |
+| Favorites page | Added a dedicated page for saved work, including remove and clear actions and an empty state. | [`favorites.html`](../../src/open-gallery/favorites.html), [`favorites-page.js`](../../src/open-gallery/favorites-page.js) |
+
+## Week 6 professional development reflection
+
+This week I practiced connecting a selected result to a detail view with URL parameters, fetching the full record from its originating museum, and handling missing images and unavailable records. I also applied browser local storage to persist a user's saved works across page visits, created a dedicated Favorites page, and added accessible pressed states and status messages to the save/remove controls. The implementation keeps data fetching, persistence, page behavior, and styling in separate modules so each responsibility is easier to maintain.
+
 ## Reflection and next steps
 
-The most important design decision was to normalize each museum's different fields before the display layer uses them. This keeps the card component straightforward and lets the two API results be searched together. The Met API needs a search request followed by object requests, so the implementation limits concurrent lookups. Follow-up work should manually review representative searches and confirm live API behavior, then complete the proposal's Week 6 detail and favorites features and Week 7 deployment/demo work.
+The most important design decision was to normalize each museum's different fields before the display layer uses them. This keeps the card component straightforward and lets the two API results be searched together. The Met API uses a paginated search endpoint and a separate object endpoint, while AIC provides its detail record from the artwork endpoint. Follow-up work is the proposal's Week 7 accessibility review, screen-size checks, and demo preparation.
 
 ## Completion evidence
 
-The project source is committed to the SleepOutside repository as a separate Vite entry at `/open-gallery/`. The local production build succeeds and emits `dist/open-gallery/index.html`. The deployed Render route responds with HTTP 200 and serves the Open Gallery page. The Trello board remains publicly readable but was not edited in this session; see the board progress note for the current checklist status and the board updates still needed.
+The Week 5–6 source is committed to the SleepOutside repository as separate Vite entries under `/open-gallery/`. The production build succeeds and emits `dist/open-gallery/index.html`, `dist/open-gallery/detail.html`, and `dist/open-gallery/favorites.html`. The updated Render routes should be checked after the Week 6 commit deploys. The Trello board remains publicly readable but was not edited in this session; see the board progress note for the current Week 6 checklist status and the board updates still needed.

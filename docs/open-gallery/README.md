@@ -15,6 +15,13 @@ From the repository root, run `npm install` and `npm run start`. Open Gallery is
 - Sort the loaded set by title or artist and request another page of results.
 - Support small screens, keyboard focus, reduced motion, and semantic labels.
 
+## Week 6 work
+
+- Open an artwork details page from a result or saved work, with the artwork image, available metadata, and a direct museum record link.
+- Show a designed fallback when an artwork image is unavailable.
+- Save and remove artworks in browser local storage, with saved works available on a dedicated Favorites page.
+- Keep saved state and accessible favorite counts synchronized across the search, detail, and Favorites pages.
+
 ## Data sources
 
 - AIC Artworks API: <https://api.artic.edu/docs/>. The app requests only the fields it displays and builds image URLs from the API's IIIF configuration.
@@ -28,9 +35,11 @@ The APIs are public and can be temporarily unavailable or rate limited. The UI r
 - [`artworks.js`](../../src/open-gallery/artworks.js) — API calls and source-specific normalization.
 - [`main.js`](../../src/open-gallery/main.js) — search state, accessible status messages, sorting, paging, and card rendering.
 - [`styles.css`](../../src/open-gallery/styles.css) — responsive visual system and reduced-motion support.
+- [`detail.html`](../../src/open-gallery/detail.html) and [`detail.js`](../../src/open-gallery/detail.js) — artwork detail page and museum record lookup.
+- [`favorites.html`](../../src/open-gallery/favorites.html), [`favorites-page.js`](../../src/open-gallery/favorites-page.js), and [`favorites.js`](../../src/open-gallery/favorites.js) — saved work page and local storage logic.
 - [`development-report.md`](./development-report.md) — Week 5 work report, skill reflection, and evidence map.
 - [`trello-progress.md`](./trello-progress.md) — Week 5 board review and progress record.
 
 ## Scope
 
-This implementation completes the proposal's Week 5 search and results work. Artwork detail pages and saved favorites belong to the proposal's Week 6 work; accessibility refinement and deployment/demo belong to Week 7.
+This implementation completes the proposal's Week 5 search/results and Week 6 detail/favorites work. Accessibility review, device checks, and demo preparation remain Week 7 work.
