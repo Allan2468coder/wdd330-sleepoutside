@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: wdd330-sleepoutside
+    runtime: static
+    branch: oa--individual4
+    buildCommand: npm run build
+    staticPublishPath: dist
