@@ -42,7 +42,7 @@ export default class CheckoutProcess {
     document.querySelector("#subtotal").textContent = money(this.subtotal);
     if (!this.items.length) {
       document.querySelector("#checkout-message").textContent = "Your cart is empty. Add an item before checking out.";
-      this.form.querySelector('button[type="submit"]').disabled = true;
+      this.form.querySelector("button[type=\"submit\"]").disabled = true;
     }
   }
 
@@ -77,7 +77,7 @@ export default class CheckoutProcess {
     if (!this.form.elements.zip.value.trim()) return;
 
     const message = document.querySelector("#checkout-message");
-    const button = this.form.querySelector('button[type="submit"]');
+    const button = this.form.querySelector("button[type=\"submit\"]");
     button.disabled = true;
     message.textContent = "Submitting your order…";
     const fields = Object.fromEntries(new FormData(this.form).entries());

@@ -10,11 +10,12 @@
     <script type="module" src="./favorites-page.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
       <a class="wordmark" href="./index.html" aria-label="Open Gallery home"><span class="mark" aria-hidden="true">◉</span> open gallery</a>
       <nav aria-label="Main navigation"><a href="./index.html#search">Explore</a><a href="./favorites.html" aria-current="page">Saved works <span id="favorite-count">0</span></a></nav>
     </header>
-    <main class="saved-page">
+    <main id="main-content" class="saved-page" tabindex="-1">
       <section aria-labelledby="saved-title">
         <p class="eyebrow">Your collection</p>
         <h1 id="saved-title">Works worth keeping.</h1>

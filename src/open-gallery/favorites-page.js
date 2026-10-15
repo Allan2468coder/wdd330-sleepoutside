@@ -8,7 +8,7 @@ const clearButton = document.querySelector("#clear-saved");
 const fallbackImage = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 450'%3E%3Crect width='600' height='450' fill='%23e8e2d5'/%3E%3Cpath d='M0 350Q150 230 300 350T600 320V450H0' fill='%23c9b9a0'/%3E%3Ccircle cx='420' cy='130' r='60' fill='%23d6a47a'/%3E%3C/svg%3E";
 
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
+  return String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" })[character]);
 }
 
 function card(art) {

@@ -43,6 +43,14 @@ This week I practiced connecting a selected result to a detail view with URL par
 
 The most important design decision was to normalize each museum's different fields before the display layer uses them. This keeps the card component straightforward and lets the two API results be searched together. The Met API uses a paginated search endpoint and a separate object endpoint, while AIC provides its detail record from the artwork endpoint. Follow-up work is the proposal's Week 7 accessibility review, screen-size checks, and demo preparation.
 
+## Week 7 quality and deployment evidence
+
+- Added a skip link, keyboard-focusable main landmarks, entrance keyframe animations, and reduced-motion overrides. Evidence: [`index.html`](../../src/open-gallery/index.html), [`detail.html`](../../src/open-gallery/detail.html), [`favorites.html`](../../src/open-gallery/favorites.html), and [`styles.css`](../../src/open-gallery/styles.css).
+- Prevented stale asynchronous searches from replacing newer results by aborting prior requests and ignoring responses from outdated request IDs. Evidence: [`main.js`](../../src/open-gallery/main.js).
+- Added automated coverage for 12-field AIC/Met normalization, AIC pagination, Met concurrency limits, API failures, and saved-work persistence/validation. Evidence: [`OpenGallery.test.js`](../../src/test/OpenGallery.test.js). The suite passes with seven tests.
+- Added the missing Babel test preset and removed an empty Jest test file that made the suite fail without running tests. The configured lint check and standard/Pages production builds pass.
+- GitHub Actions now publishes the Vite `dist` output to GitHub Pages. The public site is <https://allan2468coder.github.io/wdd330-sleepoutside/open-gallery/>; the workflow is [`deploy-pages.yml`](../../.github/workflows/deploy-pages.yml).
+
 ## Completion evidence
 
-The Week 5–6 source is committed to the SleepOutside repository as separate Vite entries under `/open-gallery/`. The production build succeeds and emits `dist/open-gallery/index.html`, `dist/open-gallery/detail.html`, and `dist/open-gallery/favorites.html`. The updated Render routes should be checked after the Week 6 commit deploys. The Trello board remains publicly readable but was not edited in this session; see the board progress note for the current Week 6 checklist status and the board updates still needed.
+The production build emits `dist/open-gallery/index.html`, `dist/open-gallery/detail.html`, and `dist/open-gallery/favorites.html`. The GitHub Pages workflow has successfully deployed the app; all three live routes and their JavaScript/CSS assets were verified. See the [W07 skills assessment draft](./W07-skills-development.md), [professional development draft](./W07-professional-development.md), and [video outline](./W07-video-outline.md) for submission materials. The Trello board must still be reviewed and updated by the student, and the video must be recorded and linked before Canvas submission; details are in [`trello-progress.md`](./trello-progress.md).

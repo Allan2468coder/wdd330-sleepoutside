@@ -9,7 +9,7 @@ function ensureOk(response) {
   return response.json();
 }
 
-function normalizeAic(item, iiifBase) {
+export function normalizeAic(item, iiifBase) {
   return {
     id: `aic-${item.id}`,
     museum: "Art Institute of Chicago",
@@ -26,7 +26,7 @@ function normalizeAic(item, iiifBase) {
   };
 }
 
-function normalizeMet(object) {
+export function normalizeMet(object) {
   return {
     id: `met-${object.objectID}`,
     museum: "The Metropolitan Museum of Art",

@@ -44,6 +44,8 @@ The APIs are public and can be temporarily unavailable or rate limited. The UI r
 - [`favorites.html`](../../src/open-gallery/favorites.html), [`favorites-page.js`](../../src/open-gallery/favorites-page.js), and [`favorites.js`](../../src/open-gallery/favorites.js) — saved work page and local storage logic.
 - [`development-report.md`](./development-report.md) — Week 5 work report, skill reflection, and evidence map.
 - [`trello-progress.md`](./trello-progress.md) — Week 5 board review and progress record.
+- [`W07-skills-development.md`](./W07-skills-development.md) and [`W07-professional-development.md`](./W07-professional-development.md) — rubric-mapped course submission drafts.
+- [`W07-video-outline.md`](./W07-video-outline.md) — timed five-minute demo guide; record and publish your own video.
 
 ## Scope
 
