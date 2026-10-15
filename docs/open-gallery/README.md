@@ -46,6 +46,7 @@ The APIs are public and can be temporarily unavailable or rate limited. The UI r
 - [`trello-progress.md`](./trello-progress.md) — Week 5 board review and progress record.
 - [`W07-skills-development.md`](./W07-skills-development.md) and [`W07-professional-development.md`](./W07-professional-development.md) — rubric-mapped course submission drafts.
 - [`W07-video-outline.md`](./W07-video-outline.md) — timed five-minute demo guide; record and publish your own video.
+- [`W07-Professional-Development.pdf`](./W07-Professional-Development.pdf) and [`W07-Skills-Development.pdf`](./W07-Skills-Development.pdf) — generated PDF versions for review/submission.
 
 ## Scope
 
