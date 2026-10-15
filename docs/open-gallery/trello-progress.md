@@ -1,13 +1,9 @@
 # Trello Progress — Open Gallery
 
-Board listed in the project team file: [SleepOutside Team 13](https://trello.com/b/2wOtGweU).
+Board: [Smookie — Open Gallery project board](https://trello.com/b/0E3oXaWh/smookie)
 
-## Current evidence
+## Verified public board evidence
 
-Open Gallery implementation evidence is summarized in [`development-report.md`](./development-report.md). The Week 5 search/APIs, Week 6 details/favorites, and Week 7 accessibility, testing, and GitHub Pages deployment are represented in the repository.
+On 2026-10-15, the public board showed the Open Gallery task cards in **Done**: Week 5 setup, API connection, and search/results; Week 6 artwork details and favorites; and Week 7 testing/fixes, deployment/demo preparation, and accessibility/screen-size review. The visible Week 5–7 checklists showed completed item counts.
 
-## Board access and required student action
-
-The current workspace does not have authenticated access to inspect or edit this Trello board. Its current card columns and checklists therefore have **not** been verified or updated here. The older board notes referred to a different board and should not be treated as the current board state.
-
-Before submitting, open the team board while signed in, update cards/checklists to reflect work actually completed, and ensure the instructor/grader can access the board link. Do not claim cards were moved or completed until that has been done on the board.
+This matches the implementation and evidence summarized in [`development-report.md`](./development-report.md). Recheck the board before submission in case its state changes.

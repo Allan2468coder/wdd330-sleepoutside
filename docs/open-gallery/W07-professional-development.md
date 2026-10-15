@@ -10,7 +10,7 @@
 
 **Source code:** [Open Gallery source folder](https://github.com/Allan2468coder/wdd330-sleepoutside/tree/main/src/open-gallery)
 
-**Project planning board:** [SleepOutside Team 13 Trello board](https://trello.com/b/2wOtGweU)
+**Project planning board:** [Smookie — Open Gallery board](https://trello.com/b/0E3oXaWh/smookie)
 
 ## Development summary
 
@@ -53,7 +53,7 @@ Testing exposed project setup issues that a build alone did not catch: the exist
 ## Work still requiring my own completion
 
 - Confirm the name order/spelling for `OGWAL ALLAN` and update it in the official course documents if needed.
-- Review the Trello board, update its cards/checklists to accurately reflect completed work, and preserve the public board link.
+- Recheck the Trello board before submission to ensure card/checklist progress remains accurate and publicly visible.
 - Record and publish the required video with my face visible at the start; include the browser demonstration and code walkthrough.
 - Add the public video URL to the official Skills Development Document and test it while signed out.
 - Upload the completed official documents to Canvas.

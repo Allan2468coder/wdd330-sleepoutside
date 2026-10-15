@@ -8,7 +8,7 @@
 
 **Application source:** [Open Gallery source folder on GitHub](https://github.com/Allan2468coder/wdd330-sleepoutside/tree/main/src/open-gallery)
 
-**Project Trello board:** [SleepOutside Team 13 board](https://trello.com/b/2wOtGweU)
+**Project Trello board:** [Smookie — Open Gallery board](https://trello.com/b/0E3oXaWh/smookie)
 
 **Public five-minute demonstration video:** [PASTE THE PUBLIC VIDEO URL AFTER RECORDING]
 
@@ -28,7 +28,7 @@ The application requests data from four museum API endpoints: AIC artwork search
 | **4. Advanced CSS — 10 points** | CSS uses keyframe entrance animations for the hero copy, hero artwork, and result cards; image and favorite hover transforms; transitions; responsive grid/layout breakpoints; visible keyboard focus; and reduced-motion overrides. | [styles.css](../../src/open-gallery/styles.css) |
 | **5. Events — 10 points** | Demonstrated events include form submit, suggested-query click, load-more click, sort change, delegated favorite click, image error fallback, `pageshow`, and cross-tab `storage` updates. | [main.js](../../src/open-gallery/main.js), [detail.js](../../src/open-gallery/detail.js), [favorites-page.js](../../src/open-gallery/favorites-page.js) |
 | **6. LocalStorage — 5 points** | Saved artwork records are serialized under `open-gallery-favorites-v1`. The record retains multiple fields used to render saved cards and detail links; save, remove, retrieve, clear, invalid JSON, and invalid record handling are covered. | [favorites.js](../../src/open-gallery/favorites.js), [OpenGallery.test.js](../../src/test/OpenGallery.test.js) |
-| **7. Trello Board — 5 points** | The public project board is linked above. Before submission, review the board and make sure card positions/checklists reflect the work actually completed; the source report is not a substitute for updating the board. | [Trello progress notes](./trello-progress.md) |
+| **7. Trello Board — 5 points** | The public Smookie board displays the W5 setup/API/search cards, W6 details/favorites cards, and W7 test/deploy/accessibility cards in Done, with their visible checklists complete. | [Trello progress notes](./trello-progress.md) |
 | **8. Video — 10 points** | Still to complete: record an approximately five-minute screen demonstration, show my face at the beginning, discuss both the running application and its source, publish the recording publicly, test the public link in a private/incognito window, and paste the link above. | [Five-minute recording outline](./W07-video-outline.md) |
 
 ## Testing and deployment evidence
@@ -43,6 +43,6 @@ The application requests data from four museum API endpoints: AIC artwork search
 - [ ] Confirm the name order/spelling for `OGWAL ALLAN` and update it if needed.
 - [ ] Paste my public video link and test it in a private/incognito browser window.
 - [ ] Review the official Skills Development Document template and transfer this evidence into its required sections if needed.
-- [ ] Review/update Trello card statuses and checklists to match what is actually done.
+- [ ] Recheck Trello cards/checklists before submission so they remain accurate.
 - [ ] Open the application, source, Trello, and video links in a signed-out/private browser.
 - [ ] Upload the completed skills document to the W07 Canvas assignment.
