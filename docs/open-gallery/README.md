@@ -4,7 +4,12 @@ Open Gallery is a responsive art discovery experience that searches the Art Inst
 
 ## Run locally
 
-From the repository root, run `npm install` and `npm run start`. Open Gallery is a page within the existing Vite app at `/open-gallery/`. Create a production build with `npm run build`; the Render static site publishes the repository's `dist` directory. Once Render deploys the new commit, the page URL is <https://wdd330-sleepoutside-e6lq.onrender.com/open-gallery/>.
+From the repository root, run `npm install` and `npm run start`. Open Gallery is a page within the existing Vite app at `/open-gallery/`. Create a production build with `npm run build`; the GitHub Actions workflow publishes the repository's `dist` directory to GitHub Pages when changes are pushed to `main`.
+
+- **Live app:** <https://allan2468coder.github.io/wdd330-sleepoutside/open-gallery/>
+- **Source code:** <https://github.com/Allan2468coder/wdd330-sleepoutside/tree/main/src/open-gallery>
+
+The `github.com/.../open-gallery` repository-browser URL is not a hosted-app URL. GitHub Pages serves the deployed app at the `github.io` live-app address above; use the source-code link to browse the implementation.
 
 ## Week 5 work
 

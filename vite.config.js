@@ -2,6 +2,7 @@ import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS === "true" ? "/wdd330-sleepoutside/" : "/",
   root: "src/",
   envDir: resolve(__dirname, "src"),
 
